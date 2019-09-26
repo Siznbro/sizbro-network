@@ -57,7 +57,7 @@
 </head>
 
 <body>
-  <h1>Sizbro Members</h1>
+  <h1>Sizbro Members <%= Time.now.year %></h1>
   <div class='member-list'>
     <% records.each do |scholar_year| %>
       <h2 class='scholar-year'><%= scholar_year["year"] %>X Generation</h2>
