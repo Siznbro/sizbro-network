@@ -19,11 +19,15 @@ def member_list
   JSON.parse(source)
 end
 
+def count_member(list)
+  list.inject(0) { |sum, year| sum += year["members"].length }
+end
+
 def generate_text(filename)
   f = File.open(filename, 'w')
-  output = ''
-  member_list.each do |scholar_year|
-    outputs << "Sizbro Members #{Time.now.year}"
+  list = member_list
+  output = "Sizbro Members #{Time.now.year} (#{count_member(list)} people)\n\n"
+  list.each do |scholar_year|
     output << "#{scholar_year["year"]}X Generation:\n"
     scholar_year["members"].each do |member|
       output << "\t- #{member["name"]}(#{member["nickname"]}), #{member["occupation"]}\n"
@@ -37,6 +41,7 @@ def generate_html(filename)
   f = File.open(filename, 'w')
   template = File.read('template.html.erb')
   records = member_list
+  count = count_member(records)
   output = ERB.new(template).result(binding)
   f.write(output)
   f.close

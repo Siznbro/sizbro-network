@@ -12,6 +12,10 @@
       font-size: 240%;
       color: #333;
     }
+    h1 span {
+      font-size: 50%;
+      color: #999;
+    }
 
     h2.scholar-year {
       font-size: 140%;
@@ -57,7 +61,7 @@
 </head>
 
 <body>
-  <h1>Sizbro Members <%= Time.now.year %></h1>
+  <h1>Sizbro Members <%= Time.now.year %> <span>(<%= count %> people)</span></h1>
   <div class='member-list'>
     <% records.each do |scholar_year| %>
       <h2 class='scholar-year'><%= scholar_year["year"] %>X Generation</h2>
