@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+  <style>
+    html {
+      font-family: 'Roboto Slab', serif;
+      padding: 40px 80px;
+    }
+
+    h1 {
+      font-size: 240%;
+      color: #333;
+    }
+
+    h2.scholar-year {
+      font-size: 140%;
+      color: #555;
+      margin-bottom: 10px;
+      color: #4477ee;
+    }
+
+    .member-list {
+      padding-left: 40px;
+    }
+
+    .members {
+      margin-bottom: 30px;
+    }
+
+    .member {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .image {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 50%;
+      background-color: #EEE;
+      margin-right: 40px;
+      border: 4px solid #bac9ee;
+    }
+
+    .image img {
+      width: 100%;
+    }
+
+    .profile {}
+    .name {
+      font-size: 120%;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Sizbro Members</h1>
+  <div class='member-list'>
+    <% records.each do |scholar_year| %>
+      <h2 class='scholar-year'><%= scholar_year["year"] %>X Generation</h2>
+      <div class='members'>
+        <% scholar_year["members"].each do |member| %>
+          <div class='member'>
+            <div class='image'>
+              <% if member["image_url"] && (member["image_url"] != '') %>
+                <img src='<%= member["image_url"] %>'>
+              <% end %>
+            </div>
+            <div class='profile'>
+              <div class='name'><%= member["name"] %> (<%= member["nickname"] %>)</div>
+              <div><%= member["occupation"] %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</body>
+
+</html>
